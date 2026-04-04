@@ -1,14 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React, {useState} from "react";
-  import { Swiper, SwiperSlide } from "swiper/react";
-  import "swiper/css";
-  import {BsArrowUpRight,BsGithub} from 'react-icons/bs';
-  import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-  import Link from "next/link";
-  import Image from "next/image";
-import WorkSliderBtns from "@/components/WorkSliderBtns";
+import React from "react";
+import {BsArrowUpRight, BsGithub} from 'react-icons/bs';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import Link from "next/link";
+import Image from "next/image";
 
 
   const projects=   
@@ -40,21 +37,7 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
           live: "https://verydorm.com",
           github: "https://github.com/k-i-b-i-wott/VeryDorm"
         },
-        {
-          num: "03",
-          title: "Remote Doctor",
-          category: "Doctor Consultation & E-Prescription",
-          description: "A remote doctor consultation and e-prescription web application built with React for the frontend, Material-UI for a modern and accessible UI, and Node.js for backend services. The platform enables patients to consult with doctors online, receive digital prescriptions, and manage appointments securely.",
-          stack: [
-            { name: "React" },
-            { name: "Typescript" },
-            { name: "Material-UI" },
-            { name: "Node.js" }
-          ],
-          image: "/assets/work/telemed.png",
-          live: "https://telemed-seven.vercel.app/",
-          github: "https://github.com/k-i-b-i-wott/telemed"
-        },
+        
         {
           num: "04",
           title: "BlogIt",
@@ -72,96 +55,215 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
           live: "https://blogit-front-end-eesk.vercel.app/",
           github: "https://github.com/k-i-b-i-wott/BlogitFrontEnd"
         },
+        {
+  num: "05",
+  title: "Dentalink",
+  category: "Patient-Dentist Linking Platform",
+  description: "Dentalink connects patients with dentists through a comprehensive telehealth platform. Built with React and TypeScript, powered by Node.js, PostgreSQL, and Prisma ORM. Features real-time video consultations with WebRTC, Socket.IO communications, LLM-powered chatbot for patient support, online prescription management, and M-Pesa payment integration. Frontend: https://github.com/TanuiDev/smile-access-hub | Backend: https://github.com/TanuiDev/dentalinkBackend | Chatbot: https://github.com/TanuiDev/Chatbot",
+  stack: [
+    { name: "React" },
+    { name: "TypeScript" },
+    { name: "Tailwind CSS" },
+    { name: "Zustand" },
+    { name: "WebRTC" },
+    { name: "Socket.IO" },
+    { name: "Node.js" },
+    { name: "PostgreSQL" },
+    { name: "Prisma ORM" },
+    { name: "LLM Chatbot" },
+    { name: "M-Pesa" }
+  ],
+  image: "/assets/work/dentalink.png",
+  live: "https://smile-access-hub.vercel.app/",
+  github: "https://github.com/TanuiDev/smile-access-hub"
+},{
+  num: "06",
+  title: "Device Care",
+  category: "Device Management & Maintenance Platform",
+  description: "A comprehensive platform for organizations to manage and maintain their device inventory, assign devices to employees, and handle defect reporting. Features role-based access control (RBAC), comprehensive testing suite (unit, integration, and E2E tests), and a professional dashboard for device tracking and employee management.",
+  stack: [
+    { name: "React" },
+    { name: "TypeScript" },
+    { name: "Redux Toolkit" },
+    { name: "Tailwind CSS" },
+    { name: "Node.js" },
+    { name: "Express.js" },
+    { name: "Microsoft SQL Server" },
+    { name: "RBAC" },
+    { name: "Jest" },
+    { name: "Cypress" },
+    { name: "Integration Testing" }
+  ],
+  image: "/assets/work/devicecare.png",
+  live: "https://devicecare.vercel.app/",
+  github: "https://github.com/TanuiDev/DeviceCare"
+},
+{
+  num: "07",
+  title: "Sweetdelights",
+  category: "Cake Ordering & Management Platform",
+  description: "A modern cake ordering application that streamlines online cake purchases and management. Featuring a role-based access control system, comprehensive testing coverage (unit, integration, and E2E), and automated CI/CD pipelines with GitHub Actions. Enables customers to browse and order cakes while providing administrators with inventory and order management capabilities. Frontend: https://github.com/TanuiDev/sweet-Delights | Backend: https://github.com/TanuiDev/CakeManagementAPIs",
+  stack: [
+    { name: "React" },
+    { name: "TypeScript" },
+    { name: "Redux Toolkit" },
+    { name: "Tailwind CSS" },
+    { name: "Node.js" },
+    { name: "Express.js" },
+    { name: "RBAC" },
+    { name: "JWT" },
+    { name: "Jest" },
+    { name: "Cypress" },
+    { name: "GitHub Actions" },
+    { name: "CI/CD" }
+  ],
+  image: "/assets/work/sweetdelights.png",
+  live: "https://sweet-delights-eta.vercel.app/",
+  github: "https://github.com/TanuiDev/sweet-Delights"
+}
   ];
 
-const Work= () => {
-  const [project, setProjects]= useState(projects[0]);
-  const handleSlideChange= (swiper)=>{
-    //get the current slide index
-    const currentIndex= swiper.activeIndex
-    //update the slide change based on the current slide
-    setProjects(projects[currentIndex])
-  }
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const Work = () => {
   return (
-    <motion.section initial={{opacity:0}} animate={{opacity:1, transition:{delay:2.4, duration:0.4, ease:'easeIn'}}}  className="min-h-[80vh] flex flex-col justify-center py-12 xl:pl-0">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }}
+      className="min-h-screen flex flex-col justify-center py-12 px-4 lg:px-0"
+    >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-        <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col xl:justify-between order-2 xl:order-none">
-         <div className="flex flex-col gap-[30px] h-[50%]">
-          <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
-            {project.num}
-          </div>
-          <h2 className="text-[42px] leading-none text-white  font-bold group-hover:text-accent transition-all duration-500 capitalize">
-            {project.title} Project
+        {/* Header */}
+        <div className="mb-12">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            My <span className="text-accent">Projects</span>
           </h2>
-          <p className="text-white">{project.description}</p>
-          <ul className="flex gap-4">
-            {project.stack.map((item,index)=>{
-              return(
-                <li key={index} className="text-xl  text-accent">
-                  {item.name}
-                  {/* removes the last , in the list */}
-                  {index !== project.stack.length-1 && ","}
-                </li>
-              );
-            })}
-          </ul>
-          {/* border */}
-          <div className="border border-white/20"></div>
-          </div>
-          <div className="flex text-center gap-4">
-            {/* live projects */}
-           <Link href={project.live}>
-           <TooltipProvider delayDuration={100}>
-              <Tooltip >
-                <TooltipTrigger className="w-[70px] h-[70px] rounded-full  bg-white/20 flex justify-center items-center group">
-                  <BsArrowUpRight  className=" text-white text-3xl group-hover:text-accent"/>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Live project</p>
-                </TooltipContent>
-               </Tooltip>
-           </TooltipProvider>           
-           </Link>
-           {/* github */}
-           <Link href={project.github}>
-           <TooltipProvider delayDuration={100}>
-              <Tooltip >
-                <TooltipTrigger className="w-[70px] h-[70px] rounded-full  bg-white/20 flex justify-center items-center group">
-                  <BsGithub  className=" text-white text-3xl group-hover:text-accent"/>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Github Repository</p>
-                </TooltipContent>
-               </Tooltip>
-           </TooltipProvider>           
-           </Link>
-          </div>
-          
+          <p className="text-white/60 text-lg max-w-2xl">
+            A collection of full-stack applications showcasing modern web technologies, cloud infrastructure, and innovative features.
+          </p>
         </div>
-        <div className="w-full xl:w-[50%]">
-          <Swiper spaceBetween={50} slidesPerView={1} className="xl:h-[520px] mb-12" onSlideChange={handleSlideChange}>
-              {projects.map((project,index)=>{
-                return(<SwiperSlide key={index} className="">
-                    <div className="h-[460px] relative flex  justify-center items-center bg-pink-50/20">
-                        {/* overlay */}
-                        <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
-                        <div className="relative w-full h-full">                          {/* image */}
-                          
-                            <Image src={project.image} fill className="object-cover w-[100px] h-[100px]" alt="" />
-                          
-                        </div>
-                        
-                     </div>
-                </SwiperSlide>
-                );
-              })}
-              {/* slider buttons */}
-              <WorkSliderBtns containerStyles="flex gap-2  absolute right-0 bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between xl:w-max xl:justify-none" 
-               btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] w-[44px] h-[44px] flex justify-center items-center transition-all"  />
-          </Swiper>
-        </div>
-        </div>
+
+        {/* Projects Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className="group relative overflow-hidden rounded-lg bg-gradient-to-b from-white/10 to-white/5 border border-white/20 hover:border-accent/50 transition-all duration-300 hover:shadow-xl hover:shadow-accent/20"
+            >
+              {/* Image Container */}
+              <div className="relative h-48 w-full overflow-hidden bg-black/20">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+              </div>
+
+              {/* Content Container */}
+              <div className="p-6">
+                {/* Project Number */}
+                <div className="text-xs font-bold text-accent mb-2 uppercase tracking-widest">
+                  Project {project.num}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+
+                {/* Category */}
+                <p className="text-sm text-white/60 mb-3">{project.category}</p>
+
+                {/* Description */}
+                <p className="text-sm text-white/70 mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="mb-4">
+                  <p className="text-xs text-accent/80 font-semibold mb-2">Tech Stack:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.slice(0, 4).map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 text-xs bg-accent/10 text-accent rounded border border-accent/30 hover:bg-accent/20 transition-colors"
+                      >
+                        {tech.name}
+                      </span>
+                    ))}
+                    {project.stack.length > 4 && (
+                      <span className="px-2 py-1 text-xs bg-accent/10 text-accent rounded border border-accent/30">
+                        +{project.stack.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-3 pt-4 border-t border-white/10">
+                  {/* Live Project */}
+                  {project.live && project.live.trim() && (
+                    <Link href={project.live}>
+                      <TooltipProvider delayDuration={100}>
+                        <Tooltip>
+                          <TooltipTrigger className="w-10 h-10 rounded-full bg-accent/20 flex justify-center items-center group/btn hover:bg-accent hover:text-black transition-all">
+                            <BsArrowUpRight className="text-accent group-hover/btn:text-black text-lg" />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Live Project</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </Link>
+                  )}
+
+                  {/* GitHub */}
+                  <Link href={project.github}>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-10 h-10 rounded-full bg-accent/20 flex justify-center items-center group/btn hover:bg-accent hover:text-black transition-all">
+                          <BsGithub className="text-accent group-hover/btn:text-black text-lg" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>GitHub Repository</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </motion.section>
   );
