@@ -21,7 +21,7 @@ const about=
     },
     {
       fielName:"Phone",
-      fieldValue:"(+254)7 08 253 758",
+      fieldValue:"(+254)7 18 105 315",
     },
     {
       fielName:"Experience",
