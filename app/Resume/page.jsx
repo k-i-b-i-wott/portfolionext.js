@@ -64,6 +64,16 @@ const experience={
       position:"Quality Assurance Engineering Trainee",
       duration:"Sep - Dec 2025",
     },
+     {
+      company:"epicSemapoa",
+      position:"Software Developer & Co-Founder",
+      duration:"Jan 2026 - Present",
+    },
+     {
+      company:"Freelance",
+      position:"Full Stack Developer",
+      duration:"Jan 2023 -  Present",
+    },
 
   ]
 }
@@ -114,7 +124,10 @@ const skills={
     { icon:<SiExpress/>, name:"Express.js" },
     { icon:<SiNestjs/>, name:"Nest.js" },
     { icon:<SiNextdotjs/>, name:"Next.js" },
-
+    { icon:<SiDjango/>, name:"Django" },
+    {icon:<SiTailwindcss/>, name:"Tailwind CSS" },
+  //  reactNative
+  { icon:null, name:"React Native" },
     { icon:<FaJs/>, name:"JavaScript" },
     { icon:<SiTypescript/>, name:"TypeScript" },
     { icon:<FaPython/>, name:"Python" },
@@ -147,6 +160,7 @@ const skills={
     { icon:<FaCss3/>, name:"CSS3" },
     { icon:<SiTailwindcss/>, name:"Tailwind CSS" },
     { icon:<FaFigma/>, name:"Figma" },
+
   ]
 }
 const skillsByCategory={
